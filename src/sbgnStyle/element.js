@@ -86,6 +86,47 @@ const elementStyle = {
 
   height (node) {
     return this.dimensions(node).h;
+  },
+  
+  bgColor (node, bgColors) {
+    if(bgColors.length == 2) {
+      return bgColors[0];
+    }
+    else if(bgColors.length == 3) {
+      const sbgnClass = sbgnData.sbgnClass(node);
+      if (sbgnClass == 'unspecified entity' || sbgnClass == 'simple chemical' || sbgnClass == 'simple chemical multimer' || sbgnClass == 'macromolecule' || sbgnClass == 'macromolecule multimer'
+              || sbgnClass == 'nucleic acid feature' || sbgnClass == 'nucleic acid feature multimer' || sbgnClass == 'perturbing agent' || sbgnClass == 'source and sink' 
+              || sbgnClass == 'phenotype' || sbgnClass == 'tag') {
+        return bgColors[2];
+      }
+      if (sbgnClass == 'complex' || sbgnClass == 'complex multimer') {
+        return bgColors[1];
+      }
+      if (sbgnClass == 'compartment') {
+        return bgColors[0];
+      }
+      return "#ffffff";
+    }
+    else if(bgColors.length == 5) {
+      const sbgnClass = sbgnData.sbgnClass(node);
+      if (sbgnClass == 'unspecified entity' || sbgnClass == 'perturbing agent' || sbgnClass == 'source and sink' 
+              || sbgnClass == 'phenotype' || sbgnClass == 'tag'  || sbgnClass == 'compartment') {
+        return bgColors[2];
+      }
+      if (sbgnClass == 'simple chemical' || sbgnClass == 'simple chemical multimer') {
+        return bgColors[1];
+      }
+      if (sbgnClass == 'macromolecule' || sbgnClass == 'macromolecule multimer') {
+        return bgColors[4];
+      }
+      if (sbgnClass == 'nucleic acid feature' || sbgnClass == 'nucleic acid feature multimer') {
+        return bgColors[0];
+      }
+      if (sbgnClass == 'complex' || sbgnClass == 'complex multimer') {
+        return bgColors[3];
+      }
+      return "#ffffff";
+    }
   }
 };
 

@@ -1,7 +1,33 @@
 const elementStyle = require('./element');
 const sbgnsvg = require('./glyph');
 
-const sbgnStyleSheet = function (cytoscape) {
+const sbgnStyleSheet = function (cytoscape, colorScheme) {
+  
+  let bgColors = [];
+  if(colorScheme == "greyscale") {
+    bgColors = ['#f0f0f0', '#d9d9d9', '#bdbdbd'];
+  }
+  else if(colorScheme == "bluescale") {
+    bgColors = ['#eff3ff', '#c6dbef', '#9ecae1'];
+  }
+  else if(colorScheme == "red_blue") {
+    bgColors = ['#f4a582', '#fddbc7', '#f7f7f7', '#d1e5f0', '#92c5de'];
+  }
+  else if(colorScheme == "green_brown") {
+    bgColors = ['#dfc27d', '#f6e8c3', '#f5f5f5', '#c7eae5', '#80cdc1'];
+  }
+  else if(colorScheme == "purple_brown") {
+    bgColors = ['#fdb863', '#fee0b6', '#f7f7f7', '#d8daeb', '#b2abd2'];
+  }
+  else if(colorScheme == "purple_green") {
+    bgColors = ['#a6dba0', '#d9f0d3', '#f7f7f7', '#e7d4e8', '#c2a5cf'];
+  }
+  else if(colorScheme == "grey_red") {
+    bgColors = ['#bababa', '#e0e0e0', '#ffffff', '#fddbc7', '#f4a582'];
+  }
+  else {
+    bgColors = ['#ffffff', '#000000'];
+  }
 
   return cytoscape.stylesheet()
         // general node style
@@ -16,7 +42,7 @@ const sbgnStyleSheet = function (cytoscape) {
           'text-halign': 'center',
           'border-width': 1.5,
           'border-color': '#555',
-          'background-color': '#f6f6f6',
+          'background-color': (node) => elementStyle.bgColor(node, bgColors),
           'text-opacity': 1,
           'opacity': 1,
           'text-outline-color': 'white',
