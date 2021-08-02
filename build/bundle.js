@@ -492,6 +492,7 @@ var sbgnStyleSheet = function sbgnStyleSheet(cytoscape, colorScheme) {
     },
     'text-valign': 'center',
     'text-halign': 'center',
+    'text-wrap': 'wrap',
     'border-width': 1.5,
     'border-color': '#555',
     'background-color': function backgroundColor(node) {
