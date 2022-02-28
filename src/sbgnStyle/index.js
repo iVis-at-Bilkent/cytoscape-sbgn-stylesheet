@@ -164,6 +164,39 @@ const sbgnStyleSheet = function (cytoscape, colorScheme) {
           'border-width': 0,
         })
 
+        // to highlight query result (source, target and path nodes)
+        .selector('node.source')
+        .css({
+          'overlay-color': function(node){
+            return node.data('highlightColor') ? node.data('highlightColor') : "#00ff00";
+          },
+          'underlay-padding': function(node){
+            return node.data('highlightWidth') ? node.data('highlightWidth') : "10px";
+          },
+          'underlay-opacity': 0.5
+        })
+        .selector('node.target')
+        .css({
+          'underlay-color': function(node){
+            console.log(node.data('highlightColor'));
+            return node.data('highlightColor') ? node.data('highlightColor') : "#ff0000";
+          },
+          'underlay-padding': function(node){
+            return node.data('highlightWidth') ? node.data('highlightWidth') : "10px";
+          },
+          'underlay-opacity': 0.5
+        })
+        .selector('node.path')
+        .css({
+          'underlay-color': function(node){
+            return node.data('highlightColor') ? node.data('highlightColor') : "#ffff00";
+          },
+          'underlay-padding': function(node){
+            return node.data('highlightWidth') ? node.data('highlightWidth') : "10px";
+          },
+          'underlay-opacity': 0.5
+        })
+
         // edge styling
         .selector('edge')
         .css({
@@ -216,6 +249,18 @@ const sbgnStyleSheet = function (cytoscape, colorScheme) {
         .selector('edge[class="production"]')
         .css({
           'target-arrow-fill': 'filled'
+        })
+
+        // to highlight edges in query result
+        .selector('edge.path')
+        .css({
+          'overlay-color': function(edge){
+            return edge.data('highlightColor') ? edge.data('highlightColor') : "#ffff00";
+          },
+          'overlay-padding': function(edge){
+            return edge.data('highlightWidth') ? edge.data('highlightWidth') : "10px";
+          },
+          'overlay-opacity': 0.5
         })
 
 
