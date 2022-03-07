@@ -167,7 +167,7 @@ const sbgnStyleSheet = function (cytoscape, colorScheme) {
         // to highlight query result (source, target and path nodes)
         .selector('node.source')
         .css({
-          'overlay-color': function(node){
+          'underlay-color': function(node){
             return node.data('highlightColor') ? node.data('highlightColor') : "#00ff00";
           },
           'underlay-padding': function(node){
