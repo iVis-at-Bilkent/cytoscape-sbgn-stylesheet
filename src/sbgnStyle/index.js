@@ -164,6 +164,13 @@ const sbgnStyleSheet = function (cytoscape, colorScheme) {
           'border-width': 0,
         })
 
+        // for process related classes, association and dissociation
+        // place possible labels (e.g. centrality values) to bottom
+        .selector('node[class="process"], node[class="association"], node[class="dissociation"]')
+        .css({
+          'text-valign': 'bottom'
+        })
+
         // to highlight query result (source, target and path nodes)
         .selector('node.source')
         .css({
@@ -178,7 +185,6 @@ const sbgnStyleSheet = function (cytoscape, colorScheme) {
         .selector('node.target')
         .css({
           'underlay-color': function(node){
-            console.log(node.data('highlightColor'));
             return node.data('highlightColor') ? node.data('highlightColor') : "#ff0000";
           },
           'underlay-padding': function(node){
@@ -195,6 +201,18 @@ const sbgnStyleSheet = function (cytoscape, colorScheme) {
             return node.data('highlightWidth') ? node.data('highlightWidth') : "10px";
           },
           'underlay-opacity': 0.5
+        })
+        .selector('node.highlight')
+        .css({
+          'underlay-color': function(node){
+            return node.data('highlightColor') ? node.data('highlightColor') : "#00ff00";
+          },
+          'underlay-padding': function(node){
+            return node.data('highlightWidth') ? node.data('highlightWidth') : "0px";
+          },
+          'underlay-opacity': function(node){
+            return node.data('highlightWidth') ? 0.5 : 0;
+          },
         })
 
         // edge styling
